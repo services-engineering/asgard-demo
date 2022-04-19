@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: kommander-acme-issuer
+spec:
+  acme:
+    email: egoode@d2iq.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-real
+    solvers:
+    - dns01:
+        route53:
+          hostedZoneID: Z1MK25233K9MVW
+          region: us-west-2
+          role: arn:aws:iam::222638339470:role/egoode-external-dns-role
+
